@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -37,6 +37,10 @@ def movie_details(request, identifier):
     elif request.method == 'DELETE':
         movie.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+def movie_detail_view(request, identifier):
+    movie = get_object_or_404(Movie, pk=identifier)
+    return render(request, 'main/movie_details.html', {'movie': movie})
 
 
 
