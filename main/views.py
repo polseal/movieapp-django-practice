@@ -40,7 +40,7 @@ def movie_details(request, identifier):
 
 def movie_detail_view(request, identifier):
     movie = get_object_or_404(Movie, pk=identifier)
-    return render(request, 'main/movie_details.html', {'movie': movie})
+    return render(request, 'main/templates/movie_details.html', {'movie': movie})
 
 
 
