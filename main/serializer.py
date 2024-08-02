@@ -13,18 +13,6 @@ class MovieSerializer(serializers.ModelSerializer):
         model = Movie
         fields = '__all__'
  
-class CommentSerializer(serializers.ModelSerializer):
-    user = serializers.ReadOnlyField(source='user.username')
-    movie = serializers.PrimaryKeyRelatedField(queryset=Movie.objects.all())
-    class Meta:
-        model = Movie
-        fields = fields = ['id', 'user', 'movie', 'comment']
 
-class ScoreSerializer(serializers.ModelSerializer):
-    user = serializers.ReadOnlyField(source='user.username')
-    movie = MovieSerializer()
-    class Meta:
-        model = Score
-        fields = ['id', 'user', 'movie', 'rating']
 
 
