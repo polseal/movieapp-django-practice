@@ -10,7 +10,7 @@ DATABASES = {
         'NAME': 'movieapp_db',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': 'db', # localhost if you wanna run some code in the IDE!
+        'HOST': 'localhost', # localhost if you wanna run some code in the IDE!
         'PORT': 5432,
     }
 }
