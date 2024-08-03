@@ -1,3 +1,4 @@
+import json
 from flask import Flask, jsonify # type: ignore
 import pika
 import threading
@@ -5,7 +6,19 @@ import threading
 app = Flask(__name__)
 
 def callbackFunction(ch,method,properties,body):
-    print('Got a message from Queue Movies: ', body)
+    try:
+        message = json.loads(body)
+        movie_id = message.get('movie')
+        title = message.get('title')
+        status = message.get('status')
+
+        
+    except json.JSONDecodeError:
+        print("Error decoding JSON message")
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+
+
 def consume():
     connection = pika.BlockingConnection(
         pika.ConnectionParameters(host='rabbitmq'))
