@@ -37,6 +37,17 @@ def create_movie(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED) 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET'])
+def user_info(request):
+    if not request.user.is_authenticated:
+        return Response({'error': 'Authentication required'}, status=status.HTTP_401_UNAUTHORIZED)
+
+    user = request.user
+    return Response({
+        'username': user.username,
+        'is_admin': user.is_superuser
+    })
+
 
 
 
