@@ -6,20 +6,27 @@ const Login = () => {
 
     const submit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const user = {username: username, password: password};
+        console.log(username + " " + password);
         try {
-        const data = await fetch('http://localhost:8000/authentification/login/', {
+            const response = await fetch('http://localhost:8000/authentification/login/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(user),
+            body: JSON.stringify({
+                username: username,
+                password: password,
+            }),
             credentials: 'include',
         });
-        const response = await data.json();
+        if (!response.ok) {
+            alert(`HTTP error! Status: ${response.status}`);
+            return;
+        }
+        const data = await response.json();
         localStorage.clear();
-        localStorage.setItem('access_token', response.access_token);
-        localStorage.setItem('refresh_token', response.refresh_token);
+        localStorage.setItem('access_token', data['access']);
+        localStorage.setItem('refresh_token', data['refresh']);
         window.location.href = '/';
         } catch (error) {   
             console.error('Error:', error);

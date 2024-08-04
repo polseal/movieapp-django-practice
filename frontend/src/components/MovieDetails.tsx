@@ -44,10 +44,11 @@ const MovieDetails: React.FC = () => {
 
     
     const handleDelete = async () => {
+        
         try {
             if(window.confirm('Are you sure you want to delete this movie?')) {
-                const token = localStorage.getItem('access_token');
-
+                const token = localStorage.getItem("access_token");
+                console.log(token);
                 if (!token) {
                     alert('No authentication token found');
                     return;

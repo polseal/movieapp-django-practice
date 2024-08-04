@@ -5,9 +5,18 @@ from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 from rest_framework import status
 from authentification.serializers import CustomTokenObtainPairSerializer
+from django.contrib.auth import authenticate, login
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+    def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+        
+        user = authenticate(username=request.data['username'], password=request.data['password'])
+        if user is not None:
+            login(request, user)
+        
+        return response
 
 class CustomTokenRefreshView(TokenRefreshView):
     pass
