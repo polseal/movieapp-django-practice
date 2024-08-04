@@ -1,18 +1,21 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
-
+from rest_framework.permissions import IsAuthenticated
+from main.permissions import AllowGetAuthenticatedForAll, IsAuthenticatedForDelete
 from main.publisher import publish_message
 from .models import Movie
 from .serializer import  MovieSerializer
 
 @api_view(['GET'])
+@permission_classes([AllowGetAuthenticatedForAll])
 def get_movies(request):
     movies = Movie.objects.all()
     serializer = MovieSerializer(movies, many=True)
     return Response(serializer.data)
 
 @api_view(['GET', 'DELETE'])
+@permission_classes([IsAuthenticatedForDelete])
 def movie_details(request, pk):
     try:
         movie = Movie.objects.get(pk=pk)
@@ -28,6 +31,7 @@ def movie_details(request, pk):
         return Response({'message': 'Movie deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def create_movie(request):
     data=request.data
     serializer = MovieSerializer(data=data)
@@ -47,6 +51,8 @@ def user_info(request):
         'username': user.username,
         'is_admin': user.is_superuser
     })
+
+
 
 
 

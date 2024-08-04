@@ -1,6 +1,9 @@
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Navigator.css';
 
 export function Navigator() {
     const [isAuth, setIsAuth] = useState(false);
@@ -9,24 +12,24 @@ export function Navigator() {
         if (localStorage.getItem('access_token') !== null) {
             setIsAuth(true); 
           }
+          console.log('isUTH ' + isAuth);
     }, [isAuth]);
 
     return (
-        <div>
-        <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="/">Movie Catalog</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto"> 
-            {isAuth ? <Nav.Link href="/">Home</Nav.Link> : null}
-            </Nav>
-            <Nav>
-            {isAuth ? <Nav.Link href="/logout">Logout</Nav.Link> :  
-                        <Nav.Link href="/login">Login</Nav.Link>}
-            </Nav>
-            </Navbar.Collapse>
-        </Navbar>
-        </div>
+        <Navbar bg="dark" variant="dark" expand="lg">
+        
+        <Navbar.Brand as={Link} to="/" className="navbar-header">
+        My MovieApp
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto">
+          <Nav.Link as={Link} to="/">Home</Nav.Link>
+          {isAuth ? <Nav.Link as={Link} to="/logout">Logout</Nav.Link> :
+          <Nav.Link as={Link} to="/login">Login</Nav.Link>}
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
     );
 }
 

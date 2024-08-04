@@ -1,3 +1,10 @@
 env/
 /notificationsapp/venv
 .env
+main/__pycache__/
+/frontend/node_modules/
+authentification/migrations/__pycache__/
+/authentification/__pycache__/
+/main/__pycache__/
+/main/migrations/
+movieapp/__pycache__/
