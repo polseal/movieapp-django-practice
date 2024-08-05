@@ -24,7 +24,7 @@ def callbackFunction(ch,method,properties,body):
         action = message.get('action')
         print(f"Movie was {action}: {title}")
         with app.app_context():
-            msg = Message('Movie Notification', sender=os.getenv("USERNAME"), recipients=[os.getenv("RECIPIENT")])
+            msg = Message('Movie Notification', sender=os.environ.get("USERNAME"), recipients=[os.environ.get("RECIPIENT")])
             msg.body = f"Movie was {action}: {title}"
             try:
                 mail.send(msg)
@@ -39,7 +39,7 @@ def callbackFunction(ch,method,properties,body):
 
 def consume():
     connection = pika.BlockingConnection(
-        pika.ConnectionParameters(host='rabbitmq')) #localhost if debugging locally
+        pika.ConnectionParameters(host='rabbitmq')) # docker goes with localhost somehow
     channel = connection.channel()
     channel.exchange_declare(exchange='notifications', exchange_type='direct')
     channel.queue_declare(queue='movies')
