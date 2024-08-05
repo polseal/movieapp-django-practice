@@ -24,7 +24,7 @@ def callbackFunction(ch,method,properties,body):
         action = message.get('action')
         print(f"Movie was {action}: {title}")
         with app.app_context():
-            msg = Message('Movie Notification', sender='polseal94@gmail.com', recipients=['grand_duel@rambler.ru'])
+            msg = Message('Movie Notification', sender=os.getenv("USERNAME"), recipients=[os.getenv("RECIPIENT")])
             msg.body = f"Movie was {action}: {title}"
             try:
                 mail.send(msg)
