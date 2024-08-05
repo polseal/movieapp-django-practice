@@ -33,6 +33,7 @@ const MovieDetails: React.FC = () => {
                 const data: Movie = await response.json();
                 setMovie(data);
             } catch (error) {
+                setMovie(null);
                 console.error(error);
             }
         };
@@ -62,20 +63,28 @@ const MovieDetails: React.FC = () => {
                     credentials: 'include',
                 });
             }
+            window.location.href = '/';
             }
             catch (error) {
                 console.error('Error:', error);
+                setMovie(null);
             }
         }
 
     return (
-        <div>
+        <div className="Movielist-container">
+        <div className="movie-container">
+        {movie != null && (
+        <>
             <h2>{movie.title}</h2>
             <p>Year: {movie.year}</p>
             <p>Description: {movie.summary}</p>
-            {isAuth && (
+        </>
+        )}
+            {(isAuth && movie != null) &&(
         <button onClick={handleDelete}>Delete Movie</button>
       )}
+      </div>
         </div>
     );
 };

@@ -11,9 +11,31 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.Movielist-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start; /* Change align-items to flex-start for better item alignment */
+  padding: 20px;
+  width: 100vw; /* Full viewport width */
+  height: calc(100vh - 60px); /* Full height minus some space if needed */
+  box-sizing: border-box;
+}
+.Movielist-form-content {
+  padding-left: 12%;
+  padding-right: 12%;
+}
+.Movielist-form-title {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 24px;
+  color: rgb(34, 34, 34);
+  font-weight: 800;
 }
 
 .App-logo {
@@ -75,3 +97,115 @@ label {
   font-weight: 600;
   color: rgb(34, 34, 34);
 }
+
+.movie-container {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+/* Movie Title */
+.movie-container h2 {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Movie Details */
+.movie-container p {
+  font-size: 1.1em;
+  color: #666;
+  margin: 5px 0;
+}
+
+/* Delete Button */
+.movie-container button {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.movie-container button:hover {
+  background-color: #c9302c;
+}
+
+.movie-container button:focus {
+  outline: none;
+}
+
+.form-container {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin: 20px auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+/* Form Container */
+.form-container {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin: 20px auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+/* Form Heading */
+.form-container h1 {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Input Fields */
+.form-container input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 20px 0 40px 0; /* Adjusted margin for more space between fields */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+/* Button */
+.form-container button {
+  background-color: #007bff !important;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 60px; /* More space above the button */
+  transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+  background-color: #0056b3 !important;
+}
+
+.form-container button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+
+
+

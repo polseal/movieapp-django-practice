@@ -3,7 +3,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Navigator.css';
 
 export function Navigator() {
     const [isAuth, setIsAuth] = useState(false);

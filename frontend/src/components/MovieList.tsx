@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './App.css';
 
 interface Movie {
     id: number;
@@ -28,8 +29,9 @@ const MovieList: React.FC = () => {
     }, []);
 
     return (
-        <div>
-            <h2>Movie List</h2>
+            <div className="Movielist-container">
+                <div className="Movielist-form-content">
+                <h3 className="Movielist-form-title">Movie List</h3>
             <ul>
                 {movies.map((movie) => (
                     <li key={movie.id}>
@@ -39,7 +41,8 @@ const MovieList: React.FC = () => {
                 </li>
                 ))}
             </ul>
-        </div>
+            </div>
+            </div>
     );
 };
 

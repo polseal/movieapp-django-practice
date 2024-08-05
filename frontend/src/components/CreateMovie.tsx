@@ -28,10 +28,12 @@ const CreateMovie = () => {
         } finally {
             setIsLoading(false); 
         }
+        window.location.href = '/';
     };
     
     return (
-        <div>
+        <div className="Movielist-container">
+        <div className="movie-container">
         <h1>Create Movie</h1>
         <input
             type="text"
@@ -54,6 +56,7 @@ const CreateMovie = () => {
         <button onClick={createMovie} disabled={isLoading}>
             {isLoading ? "Loading..." : "Create"}
         </button>
+        </div>
         </div>
     );
 }
