@@ -39,7 +39,7 @@ def callbackFunction(ch,method,properties,body):
 
 def consume():
     connection = pika.BlockingConnection(
-        pika.ConnectionParameters(host='localhost'))
+        pika.ConnectionParameters(host='rabbitmq')) #localhost if debugging locally
     channel = connection.channel()
     channel.exchange_declare(exchange='notifications', exchange_type='direct')
     channel.queue_declare(queue='movies')

@@ -36,6 +36,23 @@ services:
     depends_on:
       - db
       - rabbitmq
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules  # Prevents node_modules from being overwritten by the volume
+    depends_on:
+      - backend
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5173 || exit 1"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
   notification:
     build:
@@ -49,3 +66,4 @@ services:
 volumes:
   postgres_data:
   rabbitmq_data:
+  frontend_data:
