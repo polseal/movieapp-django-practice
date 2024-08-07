@@ -44,7 +44,7 @@ services:
   #    - "5173:5173"
   #  volumes:
   #    - .:/app
-  #    - /app/node_modules  # Prevents node_modules from being overwritten by the volume
+  #    - /app/node_modules  # we dont want the whole folder in the container
   #  depends_on:
   #    - backend
     healthcheck:

@@ -1,6 +1,8 @@
 import os
-from .settings import *
 
+import dj_database_url
+from .settings import *
+#for render.com
 SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
